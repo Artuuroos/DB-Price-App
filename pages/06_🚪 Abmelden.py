@@ -17,8 +17,7 @@ def load_lottieurl2(url: str):
   return f.json()
   lottie_url_hello2 = "https://assets4.lottiefiles.com/packages/lf20_7mibdcvp.json"
  #"https://assets3.lottiefiles.com/packages/lf20_E3exCx.json"
-  lottie_hello2 = load_lottieurl2(lottie_url_hello2)
-  st_lottie(lottie_hello2, key="hello") 
+  
   
     
 def app():
@@ -33,6 +32,9 @@ def app():
         
     if nein:
         st.info("Nicht abgemeldet")
+    lottie_url_hello2 = "https://assets4.lottiefiles.com/packages/lf20_7mibdcvp.json"
+    lottie_hello2 = load_lottieurl2(lottie_url_hello2)
+    st_lottie(lottie_hello2, key="hello") 
 app()
 load_lottieurl2("https://assets9.lottiefiles.com/packages/lf20_p4kr3lub.json")
  

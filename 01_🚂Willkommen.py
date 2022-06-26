@@ -317,18 +317,19 @@ def app():
                     with coll1:
        
                       with st.form("log"):
-                          loginn=st.text_input("Benutzername: ")
+                          st.info("Bspw. maxmustermann@gmail.com")
+                          loginn=st.text_input("E-Mail: ")
                           loginp=st.text_input("Passwort: ",type="password")
                           inhalt=st.text_input("Gib Deiner Anfrage einen Namen:")
                           wunsch=inhalt.lower()
-                          st.write("Deine Anfrage wurde wie folgt gespeichert: " + wunsch)
+                          st.write("Deine Anfrage wird wie folgt gespeichert: " + wunsch)
                 
                           tabe=''.join(wunsch)
                           best=st.form_submit_button("Anfrage speichern")
                       def Login(loginn,loginp): 
                           cur.execute("SELECT login.username FROM login WHERE username=%s", [loginn])
                           if not cur.fetchone():  # An empty result evaluates to False.
-                               st.info("Kein Benutzer mit diesem Benutzernamen")
+                               st.info("Kein Benutzer mit dieser E-Mail-Adresse")
                           else:
                               cur.execute("""SELECT login.passwort FROM login WHERE passwort=%s""", [loginp])
                               if not cur.fetchone():  # An empty result evaluates to False.
@@ -383,8 +384,9 @@ def app():
                                                    anfrage_tage=time.strftime("%d.%m")
                                                    anfrage_zeit=time.strftime("%H:%M")
                                                    anfrage_komplett=time.strftime("%d.%m. %H:%M")
-                                                   result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis"])
-                                                   result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float]
+                                                   result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
+                                                   wunschpreis1=" "
+                                                   result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
                                                    result.to_sql(name=tabe, con=engine, if_exists="append" )
                                                    result=result[0:0]
                                                    st.success("Du hast diese Anfrage erfolgreich gestellt")

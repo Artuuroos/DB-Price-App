@@ -23,7 +23,7 @@ def load_lottieurl2(url: str):
   
     
 def app():
-    st.write(st.session_state.name /n
+    st.write(st.session_state.name
             "Möchten Sie sich wirklich ausloggen?")
     with st.form("button"):
         ja=st.form_submit_button(label="Ja")

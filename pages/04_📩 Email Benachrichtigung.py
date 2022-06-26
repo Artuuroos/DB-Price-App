@@ -417,7 +417,11 @@ def app():
                                              source=requests.get(url)
                                              soup = BeautifulSoup(source.text,"html.parser")
                                              zugverbindungen=soup.find("div", class_= "overviewConnection")
+                                              
+                                             st.write("hi")
+                                             st.write(zugverbindungen)
                                              zugverbindungen1=zugverbindungen.find("div", class_="connectionRoute")
+                                             st.write("hi2")
                                              station1=zugverbindungen1.find("div", class_="station first").get_text(strip=True)
                                              station2=zugverbindungen1.find("div", class_="station stationDest").get_text(strip=True)
                                              uhrzeit_zv1=zugverbindungen.find("div", class_= "connectionTimeSoll")

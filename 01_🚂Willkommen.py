@@ -104,6 +104,8 @@ from re import X
 from telnetlib import DO
 from typing import Collection
 import smtplib, ssl
+import schedule
+import time
 
 
 conn = psycopg2.connect(host ="dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com",
@@ -484,10 +486,10 @@ def app():
 
     
 app()
-do {
-   result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
-                                                   result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
-                                                   result.to_sql(name=tabe, con=engine, if_exists="append" )
-                                                   result=result[0:0]
-}
-while True:
+def einf():
+  result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
+  result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
+  result.to_sql(name=tabe, con=engine, if_exists="append" )
+  result=result[0:0]
+einf()
+

@@ -5,7 +5,7 @@ import psycopg2.extras
 from sqlalchemy import create_engine
 import pandas
 import streamlit as st
-streamlit_multipage 
+import streamlit_multipage 
 import requests
 import streamlit as st
 from bs4 import BeautifulSoup

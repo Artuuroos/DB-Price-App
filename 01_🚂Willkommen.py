@@ -377,7 +377,7 @@ def app():
                                   def mehrereanfragen(loginn,wunsch):
                                     
                                     tababfrage=cur.execute("Select anfragen.tabelle From anfragen where username=%s and tabelle=%s",[loginn,wunsch])
-                                    st.info(tababfrage)
+                                    
                                     if cur.fetchone():
                                       while true:
                                         url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
@@ -418,34 +418,13 @@ def app():
                                                    anfrage_tage=time.strftime("%d.%m")
                                                    anfrage_zeit=time.strftime("%H:%M")
                                                    anfrage_komplett=time.strftime("%d.%m. %H:%M")
-                                                   wunschpreis1=wunschpreis2
-                                                   result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
-                                                   result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
+                                                   
+                                                   result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis"])
+                                                   result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float]
                                                    result.to_sql(name=tabe, con=engine, if_exists="append" )
                                                    result=result[0:0]
                                                    st.success("Du hast diese Anfrage erfolgreich gestellt")
-                                                   port = 587  # For starttls
-                                                   smtp_server = "smtp.gmail.com"
-                                                   yag = yagmail.SMTP("dbpriceapp123@gmail.com","jxdovcbbxcdkmgxl")
-                                                   contents = [
-                                                            "Hallo :)"
-                                                            "\n" 
-                                                            "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
-                                                            "\n"
-                                                            "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
-                                                            "Hier gehts zur Webseite: https://www.bahn.de "
-                                                            "\n"
-                                                            "\n"
-                                                            "Freundliche Grüße und eine gute Fahrt!"
-                                                            "\n"
-                                                            "Dein Team von"
-                                                            "DB-Price-App"]
-
-                                                   preisauswahl=cur.execute(f"SELECT preis FROM {wunsch} where preis <= {wunschpreis1}",conn)
-                                                   if cur.fetchall():
-                                                    yag.send(to=loginn,
-                                                    subject='Wunschpreis',
-                                                    contents=contents)
+                                                  
            
                                                sleep(18)
                                       else:

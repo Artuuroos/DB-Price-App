@@ -329,7 +329,7 @@ def app():
                     bahnkarte="4"
                 else:
                   bahnkarte="0"
-            
+      st.write(start, ziel, datum, uhrzeit_stunde, uhrzeit_minuten, alter, bahnkarte, klasse)      
       url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
       source=requests.get(url)
       soup = BeautifulSoup(source.text,"html.parser")
@@ -340,7 +340,7 @@ def app():
       
       zugverbindungen1=zugverbindungen.find("div", class_="connectionRoute")
       st.write("huhu")
-      st.write(zugverbindungen1)
+      
       station1=zugverbindungen1.find("div", class_="station first").get_text(strip=True)
       station2=zugverbindungen1.find("div", class_="station stationDest").get_text(strip=True)
       uhrzeit_zv1=zugverbindungen.find("div", class_= "connectionTimeSoll")
@@ -418,7 +418,9 @@ def app():
                                          if cur.fetchone():
                                            st.success("Du hast diese Anfrage erfolgreich gestellt")
                                            while true:
+                                             st.write(start, ziel, datum, uhrzeit_stunde, uhrzeit_minuten, alter, bahnkarte, klasse)
                                              url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
+                                             
                                              source=requests.get(url)
                                              soup = BeautifulSoup(source.text,"html.parser")
                                              zugverbindungen=soup.find("div", class_= "overviewConnection")

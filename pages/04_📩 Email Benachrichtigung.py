@@ -339,9 +339,9 @@ def app():
                       st.info("Wenn Du Deine Anfrage speichern möchten, musst Du Dich bitte zuerst anmelden.")
                       
                       coll1,coll2,coll3=st.columns(3)
-                      if option=="Anmelden":
-                        with coll1:
-       
+                       
+                      with coll1:
+                        if option=="Anmelden": 
                           with st.form("log"):
                             loginnn=st.text_input("Email-Adresse: ")
                             loginpp=st.text_input("Passwort: ",type="password")

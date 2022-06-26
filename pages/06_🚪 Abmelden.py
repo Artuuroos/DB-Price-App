@@ -17,7 +17,7 @@ def load_lottieurl2(url: str):
   if f.status_code != 200:
      return None
   return f.json()
-  lottie_url_hello2 = "https://assets4.lottiefiles.com/packages/lf20_7mibdcvp.json"
+  lottie_url_hello2 = "https://assets10.lottiefiles.com/packages/lf20_dfv2eehv.json"
  #"https://assets3.lottiefiles.com/packages/lf20_E3exCx.json"
   
   
@@ -40,7 +40,7 @@ def app():
 app()
 
 
-load_lottieurl2("https://assets9.lottiefiles.com/packages/lf20_p4kr3lub.json")
+load_lottieurl2("https://assets10.lottiefiles.com/packages/lf20_dfv2eehv.json")
  
 #def load_lottieurl2(url: str):
  #   f = requests.get(url)

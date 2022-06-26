@@ -351,7 +351,7 @@ def app():
                     with coll1:
        
                       with st.form("log"):
-                          loginn=st.text_input("Benutzername: ")
+                          loginn=st.text_input("Email-Adresse: ")
                           loginp=st.text_input("Passwort: ",type="password")
                           inhalt=st.text_input("Gib Deiner Anfrage einen Namen:")
                           wunsch=inhalt.lower()
@@ -463,7 +463,7 @@ def app():
                           
                   if option=="Registrieren":
                       with st.form(key='form201'):
-                       eingabe=st.text_input("Benutzername:")
+                       eingabe=st.text_input("Email-Adresse:")
                        passw1=st.text_input("Passwort:",type="password")
                        register = st.form_submit_button(label="Registrieren")
                       def add_userdata(eingabe,passw1):

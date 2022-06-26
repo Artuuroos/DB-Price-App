@@ -402,13 +402,13 @@ def app():
                                        st.warning("Falsches Passwort")
                                      else:
                                        st.success("Du hast Dich erfolgreich angemeldet")
-                                       result=pandas.DataFrame(columns=["username","name_wunschpreis_tabelle"])
+                                       result=pandas.DataFrame(columns=["username","tabelle_wunschpreise"])
                                        result.loc[len(result)]=[loginnn,wunsch2]
                                        result.to_sql(name="wunschpreise", con=engine, if_exists="append")
                                        result=result[0:0]
                                        def mehrereanfragen(loginnn,wunsch2):
                                     
-                                         tababfrage=cur.execute("Select name_wunschpreis_tabelle From wunschpreise where username=%s and tabelle=%s",[loginnn,wunsch2])
+                                         tababfrage=cur.execute("Select tabelle_wunschpreise From wunschpreise where username=%s and tabelle=%s",[loginnn,wunsch2])
                                          st.info(tababfrage)
                                          if cur.fetchone():
                                            while true:

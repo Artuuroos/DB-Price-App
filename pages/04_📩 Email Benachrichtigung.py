@@ -388,9 +388,9 @@ def app():
                             #best=st.form_submit_button("Anfrage speichern")
                             wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
                             preisangabe_float=float(wunschpreis2)
-                            #with st.form(key='form1'):
-                            submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
-                            if submit_buttonpreis:
+                            with st.form(key='form1'):
+                             container_buttonpreis = st.container(label='Benachrichtige mich')    
+                             if container_buttonpreis:
                                st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
                                def Login(loginnn,loginpp): 
                                  cur.execute("SELECT login.username FROM login WHERE username=%s", [loginnn])
@@ -452,8 +452,8 @@ def app():
                                                      anfrage_komplett=time.strftime("%d.%m. %H:%M")
                                                      wunschpreis1=wunschpreis2
                                                      result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
-                                                     result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
-                                                     result.to_sql(name=tabe, con=engine, if_exists="append" )
+                                                     result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,preisangabe_float]
+                                                     result.to_sql(name=wunsch2, con=engine, if_exists="append" )
                                                      result=result[0:0]
                                                      st.success("Du hast diese Anfrage erfolgreich gestellt")
                                                      port = 587  # For starttls

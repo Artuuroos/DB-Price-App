@@ -58,7 +58,7 @@ def app():
       boxen1=st.selectbox("Für folgende Anfrage:", anfragenlistebenutzer)
       prei=cursor.fetchall()
       df_diagramm= pd.read_sql(f"SELECT preis FROM {boxen1}",conn)
-      df_diagramm2=pd.DataFrame(df_diagramm)
+      #df_diagramm2=pd.DataFrame(df_diagramm)
       st.table(df_diagramm)
       liste=[]
       if prei==None:

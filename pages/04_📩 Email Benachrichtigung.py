@@ -385,7 +385,7 @@ def app():
 
                       with coll2:
 
-                            best=st.form_submit_button("Anfrage speichern")
+                            #best=st.form_submit_button("Anfrage speichern")
                             wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
                             preisangabe_float=float(wunschpreis2)
                             with st.form(key='form1'):
@@ -483,7 +483,7 @@ def app():
                                         else:
                                           st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                        mehrereanfragen(loginnn,wunsch2)
-                            if best:
+                            #if best:
                                Login(loginnn,loginpp)
 
 app()

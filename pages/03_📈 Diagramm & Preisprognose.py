@@ -21,9 +21,9 @@ cursor = conn.cursor()
 def app():
   coll1,coll2,coll3,coll4=st.columns(4)
   st.subheader("Sind Sie bereits eingeloggt?")
-  jabox=st.checkbox("ja"),
-  neinbox=st.checkbox("nein")
-  
+  with st.form("button1"):
+        jabox=st.form_submit_button(label="Ja")
+        neinbox=st.form_submit_button(label="Nein")
   if neinbox:            
       loginname=st.text_input("Login:")
       loginpassw=st.text_input("Passwort:",type="password")

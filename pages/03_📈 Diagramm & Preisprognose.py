@@ -21,7 +21,8 @@ cursor = conn.cursor()
 def app():
   coll1,coll2,coll3,coll4=st.columns(4)
   st.subheader("Sind Sie bereits eingeloggt?"
-  jabox=st.checkbox("ja"), neinbox=st.checkbox("nein")
+  jabox=st.checkbox("ja"),
+  neinbox=st.checkbox("nein")
   
   if neinbox:             
     with coll1:

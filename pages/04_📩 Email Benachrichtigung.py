@@ -69,10 +69,10 @@ def app():
       #liste.append(tabell2[0])
       
       
-    emailteil1=st.text_input("Gib Deinen Emailnamen ein.")
-    emaildomains=["@gmail.com","@gmx.de","@web.de"]
-    option = st.selectbox('Wähle Deine Email Domain aus.', emaildomains)
-    ganzeemail=emailteil1+option
+    #emailteil1=st.text_input("Gib Deinen Emailnamen ein.")
+    #emaildomains=["@gmail.com","@gmx.de","@web.de"]
+    #option = st.selectbox('Wähle Deine Email Domain aus.', emaildomains)
+    #ganzeemail=emailteil1+option
     
     port = 587  # For starttls
     smtp_server = "smtp.gmail.com"

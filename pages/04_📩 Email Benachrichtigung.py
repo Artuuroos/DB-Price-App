@@ -74,40 +74,41 @@ def app():
     #option = st.selectbox('Wähle Deine Email Domain aus.', emaildomains)
     #ganzeemail=emailteil1+option
     
-    port = 587  # For starttls
-    smtp_server = "smtp.gmail.com"
-    yag = yagmail.SMTP("dbpriceapp@gmail.com","jeedmppkysrivewz")
-    contents = [
-            "Hallo :)"
-             "\n" 
-            "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
-            "\n"
-            "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
-            "\n"
-            "Hier gehts zur Webseite: https://www.bahn.de "
-            "\n"
-            "\n"
-            "Freundliche Grüße und eine gute Fahrt!"
-            "\n"
-            "Dein Team von"
-            "DB-Price-App"
+    #port = 587  # For starttls
+    #smtp_server = "smtp.gmail.com"
+    #yag = yagmail.SMTP("dbpriceapp@gmail.com","jeedmppkysrivewz")
+    #contents = [
+          #  "Hallo :)"
+           #  "\n" 
+            #"Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
+            #"\n"
+            #"Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
+            #"\n"
+            #"Hier gehts zur Webseite: https://www.bahn.de "
+           # "\n"
+           # "\n"
+           # "Freundliche Grüße und eine gute Fahrt!"
+           # "\n"
+            #"Dein Team von"
+            #"DB-Price-App"
             ]
                         
     wunschpreis1 = st.number_input("Dein gewünschter Höchstpreis:")
     preisangabe_float=float(wunschpreis1)
-    preisauswahl=cursor.execute(f"SELECT preis FROM {boxen1},where preis <= {preisangabe_float}",conn)
+    
     with st.form(key='form1'):
              submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
              if submit_buttonpreis:
                   
                  st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis1 ,"€ fällt") 
-                 preisauswahl=cursor.execute(f"SELECT preis FROM {boxen1} where preis <= {preisangabe_float}",conn)
-                 if not cursor.fetchone():
-                   st.info(" Der Preis liegt noch nicht unter Deinem Wunschpreis.")
-                 else:
-                       yag.send(to=ganzeemail,
-                       subject='Wunschpreis',
-                       contents=contents)
+                 
+                 #preisauswahl=cursor.execute(f"SELECT preis FROM {boxen1} where preis <= {preisangabe_float}",conn)
+                 #if not cursor.fetchone():
+                   #st.info(" Der Preis liegt noch nicht unter Deinem Wunschpreis.")
+                # else:
+                      # yag.send(to=ganzeemail,
+                      # subject='Wunschpreis',
+                      # contents=contents)
                      
     
 app()

@@ -38,6 +38,8 @@ def app():
     lottie_hello2 = load_lottieurl2(lottie_url_hello2)
     st_lottie(lottie_hello2, key="hello") 
 app()
+
+
 load_lottieurl2("https://assets9.lottiefiles.com/packages/lf20_p4kr3lub.json")
  
 #def load_lottieurl2(url: str):

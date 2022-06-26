@@ -408,7 +408,7 @@ def app():
                                        result=result[0:0]
                                        def mehrereanfragen(loginnn,wunsch2):
                                     
-                                         tababfrage=cur.execute("Select tabelle_wunschpreise From wunschpreise where username=%s and tabelle=%s",[loginnn,wunsch2])
+                                         tababfrage=cur.execute("Select tabelle_wunschpreise From wunschpreise where username=%s and tabelle_wunschpreise=%s",[loginnn,wunsch2])
                                          st.info(tababfrage)
                                          if cur.fetchone():
                                            while true:

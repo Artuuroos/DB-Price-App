@@ -91,7 +91,7 @@ def app():
            # "\n"
             #"Dein Team von"
             #"DB-Price-App"
-            ]
+            #]
                         
     wunschpreis1 = st.number_input("Dein gewünschter Höchstpreis:")
     preisangabe_float=float(wunschpreis1)

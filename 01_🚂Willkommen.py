@@ -440,7 +440,7 @@ def app():
                                                             "Dein Team von"
                                                             "DB-Price-App"]
 
-                                                   preisauswahl=cursor.execute(f"SELECT preis FROM {wunsch} where preis <= wunschpreis",conn)
+                                                   preisauswahl=cursor.execute(f"SELECT preis FROM {wunsch} where preis <= {wunschpreis1}",conn)
                                                    if cursor.fetchall():
                                                     yag.send(to=loginn,
                                                     subject='Wunschpreis',

@@ -18,6 +18,41 @@ import time
 import bcrypt
 import pandas as pd
 from time import sleep
+from http.client import CONFLICT
+from pickle import TRUE
+from re import X
+from telnetlib import DO
+from typing import Collection
+from attr import s
+import streamlit as st
+import psycopg2
+import psycopg2.extras
+from sqlalchemy import create_engine
+from bs4 import BeautifulSoup
+import requests
+import time 
+from time import sleep
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import plotly.express as px 
+import plotly
+from matplotlib import dates as mpl_dates
+from cProfile import label
+from distutils.cmd import Command
+import datetime 
+from streamlit.cli import main  
+from streamlit.proto.RootContainer_pb2 import RootContainer
+import pandas 
+import plotly.figure_factory as ff
+import numpy as np
+from streamlit_option_menu import option_menu 
+import yagmail
+from dbTable import *
+from http.client import CONFLICT
+from re import X
+from telnetlib import DO
+from typing import Collection
+import smtplib, ssl
 
 
 conn = psycopg2.connect(host ="dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com",
@@ -311,8 +346,8 @@ def app():
                                       sparpreis_ohne_punkt=sparpreis_zv.replace(",",".")
                                       preis_float=float(sparpreis_ohne_punkt)
                                       if "Verbindung liegt in der Vergangenheit" in sparpreis_zv1: 
-                                        st.info("Diese Verbindung liegt in der Vergangenheit. Wählen Sie eine andere Verbindung")
-                                        break
+                                          st.info("Diese Verbindung liegt in der Vergangenheit. Wählen Sie eine andere Verbindung")
+                                          break
 
                                       else: 
                                           if "THA" in art_zug_zv2:
@@ -335,14 +370,14 @@ def app():
                                                  result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float]
                                                  result.to_sql(name=tabe, con=engine, if_exists="append" )
                                                  result=result[0:0]
+                                                 st.success("Du hast diese Anfrage erfolgreich gestellt")
                                 
                                 
                                              sleep(18)
 
-                    st.success("Sie haben die Anfrage erfolgreich gestellt")
-                    st.success("Du hast diese Anfrage erfolgreich gestellt")
-                  else:
-                      st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
+                                    
+                                    else:
+                                      st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                    
                                   mehrereanfragen(loginn,wunsch)
 #weiter2=st.form_submit_button("Fortfahren zum Diagramm/Preisvorhersage")
@@ -470,4 +505,5 @@ def app():
                     
         #if register:   
             #add_userdata(eingabe,passw1)
+    
 app()

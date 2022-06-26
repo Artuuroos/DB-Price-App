@@ -24,10 +24,8 @@ def app():
   jabox=st.checkbox("ja"),
   neinbox=st.checkbox("nein")
   
-  if neinbox:             
-    with coll1:
-          loginname=st.text_input("Login: ")
-    with coll2:
+  if neinbox:            
+      loginname=st.text_input("Login:")
       loginpassw=st.text_input("Passwort:",type="password")
       anfragenlistebenutzer=[]
     with st.container():
@@ -146,10 +144,8 @@ def app():
                       st.subheader("Es liegen zu wenige Daten vor um eine Preisvorhersage zu machen!")
                   st.subheader("Du möchtest jetzt eine Verbindung buchen?")
                   st.write("[Hier geht es direkt zur Bahn-Webseite](https://www.bahn.de/)")
-  else:              
-    with coll1:
-          loginname=st.text_input("Login:",st.session_state.name)
-    with coll2:
+  else:             
+      loginname=st.text_input("Login:",st.session_state.name)
       loginpassw=st.text_input("Passwort:",st.session_state.passw,type="password")
       anfragenlistebenutzer=[]
     with st.container():

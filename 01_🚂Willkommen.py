@@ -293,7 +293,6 @@ def app():
 
               st.write("Diese Zugverbindung wird nicht von uns unterstüzt. Bitte wähle eine Zugverbindung von der DB.")
 
-
           else: 
               if "VRS-Tarif" in sparpreis_zv1:
 
@@ -327,11 +326,11 @@ def app():
                           tabe=''.join(wunsch)
                           best=st.form_submit_button("Anfrage speichern")
                       def Login(loginn,loginp): 
-                          abfrage = cur.execute("SELECT login.username FROM login WHERE username=%s", [loginn])
+                          cur.execute("SELECT login.username FROM login WHERE username=%s", [loginn])
                           if not cur.fetchone():  # An empty result evaluates to False.
                                st.info("Kein Benutzer mit diesem Benutzernamen")
                           else:
-                              abfragep = cur.execute("""SELECT login.passwort FROM login WHERE passwort=%s""", [loginp])
+                              cur.execute("""SELECT login.passwort FROM login WHERE passwort=%s""", [loginp])
                               if not cur.fetchone():  # An empty result evaluates to False.
                                   st.warning("Falsches Passwort")
                               else:
@@ -344,7 +343,7 @@ def app():
                                     
                                     tababfrage=cur.execute("Select anfragen.tabelle From anfragen where username=%s and tabelle=%s",[loginn,wunsch])
                                     st.info(tababfrage)
-                                    if not cur.fetchone():
+                                    if cur.fetchone():
                                       while true:
                                         url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
                                         source=requests.get(url)
@@ -389,30 +388,17 @@ def app():
                                                    result.to_sql(name=tabe, con=engine, if_exists="append" )
                                                    result=result[0:0]
                                                    st.success("Du hast diese Anfrage erfolgreich gestellt")
-                                
-                                
                                                sleep(18)
-
-                                    
                                       else:
                                         st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
-                    
-                                  
-#weiter2=st.form_submit_button("Fortfahren zum Diagramm/Preisvorhersage")
-                                      
+                                  mehrereanfragen(loginn,wunsch)
+
                               if 'name' not in st.session_state:
                                     st.session_state.name =loginn
                               if 'passw' not in st.session_state:
                                     st.session_state.passw=loginp
-                                  
 
-                                                                     
-
-
-
-                  
                     if best:
-                      mehrereanfragen(loginn,wunsch)
                       Login(loginn,loginp)
                       if 'willen' not in st.session_state:
                         st.session_state.willen= True

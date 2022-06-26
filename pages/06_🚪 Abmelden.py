@@ -10,6 +10,8 @@ from streamlit_multipage.multipage import MultiPage
 import streamlit as st
 from streamlit_option_menu import option_menu
 import requests
+from streamlit_lottie import st_lottie
+from streamlit_lottie import st_lottie_spinner
 def load_lottieurl2(url: str):
   f = requests.get(url)
   if f.status_code != 200:

@@ -385,12 +385,12 @@ def app():
 
                       with coll2:
 
-                            #best=st.form_submit_button("Anfrage speichern")
-                            wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
-                            preisangabe_float=float(wunschpreis2)
-                            with st.form(key='form1'):
-                             container_buttonpreis = st.container(label='Benachrichtige mich')    
-                             if container_buttonpreis:
+                          #best=st.form_submit_button("Anfrage speichern")
+                          wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
+                          preisangabe_float=float(wunschpreis2)
+                          with st.form(key='form1'):
+                            submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
+                          if submit_buttonpreis:
                                st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
                                def Login(loginnn,loginpp): 
                                  cur.execute("SELECT login.username FROM login WHERE username=%s", [loginnn])

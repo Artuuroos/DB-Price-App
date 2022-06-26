@@ -417,7 +417,7 @@ def app():
                                                    anfrage_tage=time.strftime("%d.%m")
                                                    anfrage_zeit=time.strftime("%H:%M")
                                                    anfrage_komplett=time.strftime("%d.%m. %H:%M")
-                                                   wunschpreis1="0"
+                                                   wunschpreis1=wunschpreis2
                                                    result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
                                                    result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
                                                    result.to_sql(name=tabe, con=engine, if_exists="append" )

@@ -150,7 +150,7 @@ def app():
     with coll1:
           loginname=st.text_input("Login:",st.session_state.name)
     with coll2:
-      loginpassw=st.text_input("Passwort:",type="password",st.session_state.passw)
+      loginpassw=st.text_input("Passwort:",st.session_state.passw,type="password")
       anfragenlistebenutzer=[]
     with st.container():
       abfrage = cursor.execute("SELECT login.username FROM login WHERE username=%s", [loginname])

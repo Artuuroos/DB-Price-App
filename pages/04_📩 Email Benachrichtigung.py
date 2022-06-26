@@ -80,15 +80,16 @@ def app():
     contents = [
             "Hallo :)"
              "\n" 
-            "Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen."
+            "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
             "\n"
             "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
             "\n"
             "Hier gehts zur Webseite: https://www.bahn.de "
             "\n"
+            "\n"
             "Freundliche Grüße und eine gute Fahrt!"
             "\n"
-            "\n"
+            "Dein Team von"
             "DB-Price-App"
             ]
                         

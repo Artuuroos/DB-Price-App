@@ -70,6 +70,40 @@ from re import X
 from telnetlib import DO
 from typing import Collection
 import smtplib, ssl
+from http.client import CONFLICT
+from re import X
+from telnetlib import DO
+from typing import Collection
+import streamlit as st
+import psycopg2
+import psycopg2.extras
+from sqlalchemy import create_engine
+import pandas
+from bs4 import BeautifulSoup
+import requests
+import time 
+from time import sleep
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import plotly.express as px 
+import plotly
+from matplotlib import dates as mpl_dates
+from cProfile import label
+from distutils.cmd import Command
+import datetime 
+from streamlit.cli import main  
+from streamlit.proto.RootContainer_pb2 import RootContainer
+import pandas as pd 
+import plotly.figure_factory as ff
+import numpy as np
+from streamlit_option_menu import option_menu 
+import yagmail
+from dbTable import *
+from http.client import CONFLICT
+from re import X
+from telnetlib import DO
+from typing import Collection
+import smtplib, ssl
 
 
 conn = psycopg2.connect(host ="dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com",
@@ -317,19 +351,18 @@ def app():
                     with coll1:
        
                       with st.form("log"):
-                          st.info("Bspw. maxmustermann@gmail.com")
-                          loginn=st.text_input("E-Mail: ")
+                          loginn=st.text_input("Benutzername: ")
                           loginp=st.text_input("Passwort: ",type="password")
                           inhalt=st.text_input("Gib Deiner Anfrage einen Namen:")
                           wunsch=inhalt.lower()
-                          st.write("Deine Anfrage wird wie folgt gespeichert: " + wunsch)
+                          st.write("Deine Anfrage wurde wie folgt gespeichert: " + wunsch)
                 
                           tabe=''.join(wunsch)
-                          best=st.checkbox("Anfrage speichern")
+                          best=st.form_submit_button("Anfrage speichern")
                       def Login(loginn,loginp): 
                           cur.execute("SELECT login.username FROM login WHERE username=%s", [loginn])
                           if not cur.fetchone():  # An empty result evaluates to False.
-                               st.info("Kein Benutzer mit dieser E-Mail-Adresse")
+                               st.info("Kein Benutzer mit diesem Benutzernamen")
                           else:
                               cur.execute("""SELECT login.passwort FROM login WHERE passwort=%s""", [loginp])
                               if not cur.fetchone():  # An empty result evaluates to False.
@@ -340,10 +373,6 @@ def app():
                                   result.loc[len(result)]=[loginn,wunsch]
                                   result.to_sql(name="anfragen", con=engine, if_exists="append")
                                   result=result[0:0]
-                                  if 'name' not in st.session_state:
-                                    st.session_state.name =loginn
-                                  if 'passw' not in st.session_state:
-                                    st.session_state.passw=loginp
                                   def mehrereanfragen(loginn,wunsch):
                                     
                                     tababfrage=cur.execute("Select anfragen.tabelle From anfragen where username=%s and tabelle=%s",[loginn,wunsch])
@@ -388,19 +417,43 @@ def app():
                                                    anfrage_tage=time.strftime("%d.%m")
                                                    anfrage_zeit=time.strftime("%H:%M")
                                                    anfrage_komplett=time.strftime("%d.%m. %H:%M")
+                                                   wunschpreis1="0"
                                                    result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
-                                                   wunschpreis1=" "
                                                    result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,wunschpreis1]
                                                    result.to_sql(name=tabe, con=engine, if_exists="append" )
                                                    result=result[0:0]
                                                    st.success("Du hast diese Anfrage erfolgreich gestellt")
+                                                   port = 587  # For starttls
+                                                   smtp_server = "smtp.gmail.com"
+                                                   yag = yagmail.SMTP("dbpriceapp@gmail.com","jeedmppkysrivewz")
+                                                   contents = [
+                                                            "Hallo :)"
+                                                            "\n" 
+                                                            "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
+                                                            "\n"
+                                                            "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
+                                                            "Hier gehts zur Webseite: https://www.bahn.de "
+                                                            "\n"
+                                                            "\n"
+                                                            "Freundliche Grüße und eine gute Fahrt!"
+                                                            "\n"
+                                                            "Dein Team von"
+                                                            "DB-Price-App"]
+                                                   preisauswahl=cursor.execute(f"SELECT preis FROM {boxen1} where preis <= {preisangabe_float}",conn)
+                                                   if cursor.fetchall():
+                                                    yag.send(to=loginn,
+                                                    subject='Wunschpreis',
+                                                    contents=contents)
+           
                                                sleep(18)
-                                                   
                                       else:
                                         st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                   mehrereanfragen(loginn,wunsch)
 
-                              
+                              if 'name' not in st.session_state:
+                                    st.session_state.name =loginn
+                              if 'passw' not in st.session_state:
+                                    st.session_state.passw=loginp
 
                     if best:
                       Login(loginn,loginp)

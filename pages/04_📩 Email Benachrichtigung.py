@@ -92,16 +92,21 @@ def app():
            # "\n"
             #"Dein Team von"
             #"DB-Price-App"
-            #]
-                        
-    wunschpreis1 = st.number_input("Dein gewünschter Höchstpreis:")
-    preisangabe_float=float(wunschpreis1)
-    
-    with st.form(key='form1'):
-             submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
-             if submit_buttonpreis:
-                  
-                 st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis1 ,"€ fällt") 
+   #]
+    zahl=st.number_input("Dein gewünschter Höchstpreis:")
+    zahl2="0"
+    if zahl = zahl2
+      wunschpreis2="0"
+      
+    else: 
+      wunschpreis2=zahl
+      preisangabe_float=float(wunschpreis2)
+      with st.form(key='form1'):
+            submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
+            if submit_buttonpreis:  
+                st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
+      
+   
                  
                  #preisauswahl=cursor.execute(f"SELECT preis FROM {boxen1} where preis <= {preisangabe_float}",conn)
                  #if not cursor.fetchone():

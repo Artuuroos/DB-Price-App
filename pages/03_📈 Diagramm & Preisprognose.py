@@ -30,11 +30,11 @@ def app():
       anfragenlistebenutzer=[]
       with st.container():
         abfrage = cursor.execute("SELECT login.username FROM login WHERE username=%s", [loginname])
-        if not cursor.fetchone():  # An empty result evaluates to False.
+        if not cursor.fetchone():  
             st.write("Kein Benutzer mit diesem Benutzernamen")
         else:
             abfragep = cursor.execute("""SELECT login.passwort FROM login WHERE passwort=%s""", [loginpassw])
-            if not cursor.fetchone():  # An empty result evaluates to False.
+            if not cursor.fetchone():  
                 st.write("Falsches Passwort")
             else:
                 st.success("Erfolgreich eingeloggt")

@@ -397,7 +397,7 @@ def app():
                                       else:
                                         st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                     
-                                  mehrereanfragen(loginn,wunsch)
+                                  
 #weiter2=st.form_submit_button("Fortfahren zum Diagramm/Preisvorhersage")
                                       
                               if 'name' not in st.session_state:
@@ -412,6 +412,7 @@ def app():
 
                   
                     if best:
+                      mehrereanfragen(loginn,wunsch)
                       Login(loginn,loginp)
                       if 'willen' not in st.session_state:
                         st.session_state.willen= True

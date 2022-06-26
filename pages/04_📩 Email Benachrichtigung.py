@@ -104,6 +104,39 @@ from re import X
 from telnetlib import DO
 from typing import Collection
 import smtplib, ssl
+from re import X
+from telnetlib import DO
+from typing import Collection
+import streamlit as st
+import psycopg2
+import psycopg2.extras
+from sqlalchemy import create_engine
+import pandas
+from bs4 import BeautifulSoup
+import requests
+import time 
+from time import sleep
+import matplotlib.pyplot as plt
+import matplotlib.animation as animation
+import plotly.express as px 
+import plotly
+from matplotlib import dates as mpl_dates
+from cProfile import label
+from distutils.cmd import Command
+import datetime 
+from streamlit.cli import main  
+from streamlit.proto.RootContainer_pb2 import RootContainer
+import pandas as pd 
+import plotly.figure_factory as ff
+import numpy as np
+from streamlit_option_menu import option_menu 
+import yagmail
+from dbTable import *
+from http.client import CONFLICT
+from re import X
+from telnetlib import DO
+from typing import Collection
+import smtplib, ssl
 
 
 conn = psycopg2.connect(host ="dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com",
@@ -349,6 +382,9 @@ def app():
                             st.write("Deine Anfrage wurde wie folgt gespeichert: " + wunsch2)
                 
                             tabe=''.join(wunsch2)
+
+                      with coll2:
+
                             best=st.form_submit_button("Anfrage speichern")
                             wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
                             preisangabe_float=float(wunschpreis2)
@@ -437,17 +473,17 @@ def app():
                                                             "Dein Team von"
                                                             "DB-Price-App"]
 
-                                                     preisauswahl=cur.execute(f"SELECT preis FROM {wunsch2} where preis <= {wunschpreis1}",conn)
+                                                     cur.execute(f"SELECT preis FROM {wunsch2} where preis <= {wunschpreis1}",conn)
                                                      if cur.fetchall():
-                                                      yag.send(to=loginnn,
-                                                      subject='Wunschpreis',
-                                                      contents=contents)
+                                                       yag.send(to=loginnn,
+                                                       subject='Wunschpreis',
+                                                       contents=contents)
            
                                           sleep(18)
                                         else:
                                           st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                        mehrereanfragen(loginnn,wunsch2)
-
+                            if best:
                                Login(loginnn,loginpp)
 
 app()

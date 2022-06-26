@@ -21,5 +21,4 @@ streamlit_multipage==0.0.18
 streamlit_option_menu==0.3.2
 tensorflow
 yagmail==0.15.277
-schedule
-time
+

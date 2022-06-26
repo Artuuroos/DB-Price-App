@@ -388,8 +388,8 @@ def app():
                             #best=st.form_submit_button("Anfrage speichern")
                             wunschpreis2=st.number_input("Dein gewünschter Höchstpreis:")
                             preisangabe_float=float(wunschpreis2)
-                            with st.form(key='form1'):
-                             submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
+                            #with st.form(key='form1'):
+                            submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
                             if submit_buttonpreis:
                                st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
                                def Login(loginnn,loginpp): 
@@ -484,6 +484,6 @@ def app():
                                            st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                        mehrereanfragen(loginnn,wunsch2)
                             #if best:
-                                 Login(loginnn,loginpp)
+                               Login(loginnn,loginpp)
 
 app()

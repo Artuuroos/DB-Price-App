@@ -358,7 +358,7 @@ def app():
                           st.write("Deine Anfrage wurde wie folgt gespeichert: " + wunsch)
                 
                           tabe=''.join(wunsch)
-                          best=st.form_submit_button("Anfrage speichern")
+                          best=st.form_submit_button("Anfrage speichern",on_click= while=True)
                       def Login(loginn,loginp): 
                           cur.execute("SELECT login.username FROM login WHERE username=%s", [loginn])
                           if not cur.fetchone():  # An empty result evaluates to False.

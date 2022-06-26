@@ -340,6 +340,10 @@ def app():
                                   result.loc[len(result)]=[loginn,wunsch]
                                   result.to_sql(name="anfragen", con=engine, if_exists="append")
                                   result=result[0:0]
+                                  if 'name' not in st.session_state:
+                                    st.session_state.name =loginn
+                                  if 'passw' not in st.session_state:
+                                    st.session_state.passw=loginp
                                   def mehrereanfragen(loginn,wunsch):
                                     
                                     tababfrage=cur.execute("Select anfragen.tabelle From anfragen where username=%s and tabelle=%s",[loginn,wunsch])
@@ -396,10 +400,7 @@ def app():
                                         st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                   mehrereanfragen(loginn,wunsch)
 
-                              if 'name' not in st.session_state:
-                                    st.session_state.name =loginn
-                              if 'passw' not in st.session_state:
-                                    st.session_state.passw=loginp
+                              
 
                     if best:
                       Login(loginn,loginp)

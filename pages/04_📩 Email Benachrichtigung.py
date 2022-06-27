@@ -475,7 +475,7 @@ def app():
                                                             
                                                             port = 587  # For starttls
                                                             smtp_server = "smtp.gmail.com"
-                                                            yag = yagmail.SMTP("dbpriceapp123@gmail.com","jxdovcbbxcdkmgxl")
+                                                            yag = yagmail.SMTP("dbpriceapp123@gmail.com","wnxtawjzgmsgqzkq")
                                                             contents = [
                                                                 "Hallo :)"
                                                                 "\n" 

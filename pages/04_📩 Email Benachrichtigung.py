@@ -376,7 +376,7 @@ def app():
                   st.write("Preis: ",sparpreis_zv)
                   
                   with st.container():
-                      st.info("Wenn Du Deine Anfrage speichern möchten, musst Du Dich bitte zuerst anmelden.")
+                      st.info("Wenn Du Deine Anfrage speichern möchtest, musst Du Dich bitte zuerst anmelden.")
                       
                       coll1,coll2=st.columns(2)
                        
@@ -386,7 +386,7 @@ def app():
                             loginpp=st.text_input("Passwort: ",type="password")
                             inhalt=st.text_input("Gib Deiner Anfrage einen Namen:")
                             wunsch2=inhalt.lower()
-                            st.write("Deine Anfrage wurde wie folgt gespeichert: " + wunsch2)
+                            st.write("Deine Anfrage wird wie folgt gespeichert: " + wunsch2)
                 
                             tabe=''.join(wunsch2)
 
@@ -398,7 +398,7 @@ def app():
                           with st.form(key='form1'):
                             submit_buttonpreis = st.form_submit_button(label='Benachrichtige mich')    
                           if submit_buttonpreis:
-                               st.write("Du erhälst eine Email Benachrichtung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
+                               st.write("Du erhälst eine Email Benachrichtigung, wenn der Preis unter",wunschpreis2 ,"€ fällt") 
                                def Login(loginnn,loginpp): 
                                  cur.execute("SELECT login.username FROM login WHERE username=%s", [loginnn])
                                  if not cur.fetchone():  # An empty result evaluates to False.

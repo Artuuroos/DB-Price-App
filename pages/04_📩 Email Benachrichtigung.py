@@ -495,7 +495,7 @@ def app():
                                                         yag.send(to=loginnn,
                                                         subject='Wunschpreis',
                                                         contents=contents)
-                                                        break
+                                                        #break
            
                                              sleep(18)
                                          else:

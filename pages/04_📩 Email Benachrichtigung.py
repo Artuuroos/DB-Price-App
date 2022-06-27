@@ -417,7 +417,7 @@ def app():
                                     
                                          tababfrage=cur.execute("Select tabelle_wunschpreise From wunschpreise where username=%s and tabelle_wunschpreise=%s",[loginnn,wunsch2])
                                         
-                                         if not cur.fetchone():
+                                         if cur.fetchone():
                                             st.success("Du hast diese Anfrage erfolgreich gestellt")
                                             while true:
                                              
@@ -498,8 +498,8 @@ def app():
                                                                 break
            
                                                 sleep(18)
-                                            else:
-                                              st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
+                                            #else:
+                                              #st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                        mehrereanfragen(loginnn,wunsch2)
                             #if best:
                                Login(loginnn,loginpp)

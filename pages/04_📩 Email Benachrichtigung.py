@@ -418,86 +418,86 @@ def app():
                                          tababfrage=cur.execute("Select tabelle_wunschpreise From wunschpreise where username=%s and tabelle_wunschpreise=%s",[loginnn,wunsch2])
                                         
                                          if cur.fetchone():
-                                           st.success("Du hast diese Anfrage erfolgreich gestellt")
-                                           while true:
+                                            st.success("Du hast diese Anfrage erfolgreich gestellt")
+                                            while true:
                                              
-                                             url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
-                                             
-                                             source=requests.get(url)
+                                                url='https://reiseauskunft.bahn.de/bin/query.exe/dn?revia=yes&existOptimizePrice-deactivated=1&country=DEU&dbkanal_007=L01_S01_D001_qf-bahn-svb-kl2_lz03&start=1&protocol=https%3A&REQ0JourneyStopsS0A=1&S='+start+'&REQ0JourneyStopsSID=A%3D1%40O%3DM%C3%BCnchen+Hbf%40X%3D11558339%40Y%3D48140229%40U%3D80%40L%3D008000261%40B%3D1%40p%3D1652295202%40&REQ0JourneyStopsZ0A=1&Z='+ziel+'&REQ0JourneyStopsZID=A%3D1%40O%3DAachen+Hbf%40X%3D6091495%40Y%3D50767803%40U%3D80%40L%3D008000001%40B%3D1%40p%3D1652295202%40&date=Fr%2C+'+datum+'&time='+uhrzeit_stunde+'%3A'+uhrzeit_minuten+'&timesel=depart&returnDate=&returnTime=&returnTimesel=depart&optimize=0&auskunft_travelers_number=1&tariffTravellerType.1='+alter+'&tariffTravellerReductionClass.1='+bahnkarte+'&tariffClass='+klasse+'&rtMode=DB-HYBRID&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21&externRequest=yes&HWAI=JS%21js%3Dyes%21ajax%3Dyes%21#hfsseq1|gl.0263982.1652621988'
+                                                
+                                                source=requests.get(url)
+                                                
                                             
-                                           
-                                             soup = BeautifulSoup(source.text,"html.parser")
-                                             
-                                             zugverbindungen=soup.find("div", class_= "overviewConnection")
-                                              
-                                             
-                                             
-                                             zugverbindungen1=zugverbindungen.find("div", class_="connectionRoute")
-                                             
-                                             station1=zugverbindungen1.find("div", class_="station first").get_text(strip=True)
-                                             station2=zugverbindungen1.find("div", class_="station stationDest").get_text(strip=True)
-                                             uhrzeit_zv1=zugverbindungen.find("div", class_= "connectionTimeSoll")
-                                             zeiten_zv1=uhrzeit_zv1.find("div", class_= "time").get_text(strip=True)
-                                             art_zug_zv1=soup.find("div", class_= "connectionData")
-                                             art_zug_zv2=art_zug_zv1.find("div", class_= "connectionBar").get_text(strip=True)
-                                             preis_zv1=zugverbindungen.find("div",class_="connectionAction").get_text(strip=True)
-                                             sparpreis_zv2=preis_zv1.replace("ab","")
-                                             sparpreis_zv1=sparpreis_zv2.replace("Rückfahrt hinzufügen","")
-                                             sparpreis_zv=sparpreis_zv1.replace("€","")
-                                             sparpreis_ohne_punkt=sparpreis_zv.replace(",",".")
-                                             preis_float=float(sparpreis_ohne_punkt)
-                                             if "Verbindung liegt in der Vergangenheit" in sparpreis_zv1: 
-                                                 st.info("Diese Verbindung liegt in der Vergangenheit. Wählen Sie eine andere Verbindung")
-                                                 break
-
-                                             else: 
-                                                if "THA" in art_zug_zv2:
-                      
-                                                 st.info("Diese Zugverbindung wird nicht von uns unterstüzt. Bitte wählen Sie eine Verbindung der Züge von der DB.")
-                                                 break
+                                                soup = BeautifulSoup(source.text,"html.parser")
+                                                
+                                                zugverbindungen=soup.find("div", class_= "overviewConnection")
+                                                
+                                                
+                                                
+                                                zugverbindungen1=zugverbindungen.find("div", class_="connectionRoute")
+                                                
+                                                station1=zugverbindungen1.find("div", class_="station first").get_text(strip=True)
+                                                station2=zugverbindungen1.find("div", class_="station stationDest").get_text(strip=True)
+                                                uhrzeit_zv1=zugverbindungen.find("div", class_= "connectionTimeSoll")
+                                                zeiten_zv1=uhrzeit_zv1.find("div", class_= "time").get_text(strip=True)
+                                                art_zug_zv1=soup.find("div", class_= "connectionData")
+                                                art_zug_zv2=art_zug_zv1.find("div", class_= "connectionBar").get_text(strip=True)
+                                                preis_zv1=zugverbindungen.find("div",class_="connectionAction").get_text(strip=True)
+                                                sparpreis_zv2=preis_zv1.replace("ab","")
+                                                sparpreis_zv1=sparpreis_zv2.replace("Rückfahrt hinzufügen","")
+                                                sparpreis_zv=sparpreis_zv1.replace("€","")
+                                                sparpreis_ohne_punkt=sparpreis_zv.replace(",",".")
+                                                preis_float=float(sparpreis_ohne_punkt)
+                                                if "Verbindung liegt in der Vergangenheit" in sparpreis_zv1: 
+                                                    st.info("Diese Verbindung liegt in der Vergangenheit. Wählen Sie eine andere Verbindung")
+                                                    break
 
                                                 else: 
-                                                   if "VRS-Tarif" in sparpreis_zv1:
-                            
-                                                     st.info("Hier ist kein Vergleich notwendig, da diese Verbindung zu VRS-Tarifen angeboten wird.")
-                                                     break 
-                          
-                                                   else:
-                                
-                                                      anfrage_tage=time.strftime("%d.%m")
-                                                      anfrage_zeit=time.strftime("%H:%M")
-                                                      anfrage_komplett=time.strftime("%d.%m. %H:%M")
-                                                      wunschpreis1=wunschpreis2
-                                                      result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
-                                                      result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,preisangabe_float]
-                                                      result.to_sql(name=wunsch2, con=engine, if_exists="append" )
-                                                      result=result[0:0]
-                                                      
-                                                      port = 587  # For starttls
-                                                      smtp_server = "smtp.gmail.com"
-                                                      yag = yagmail.SMTP("dbpriceapp123@gmail.com","jxdovcbbxcdkmgxl")
-                                                      contents = [
-                                                            "Hallo :)"
-                                                            "\n" 
-                                                            "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
-                                                            "\n"
-                                                            "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
-                                                            "Hier gehts zur Webseite: https://www.bahn.de "
-                                                            "\n"
-                                                            "\n"
-                                                            "Freundliche Grüße und eine gute Fahrt!"
-                                                            "\n"
-                                                            "Dein Team von"
-                                                            "DB-Price-App"]
+                                                    if "THA" in art_zug_zv2:
+                        
+                                                        st.info("Diese Zugverbindung wird nicht von uns unterstüzt. Bitte wählen Sie eine Verbindung der Züge von der DB.")
+                                                        break
 
-                                                      cur.execute(f"SELECT preis FROM {wunsch2} where preis <=wunschpreis",conn)
-                                                      if cur.fetchall():
-                                                        yag.send(to=loginnn,
-                                                        subject='Wunschpreis',
-                                                        contents=contents)
-                                                        #break
+                                                    else: 
+                                                        if "VRS-Tarif" in sparpreis_zv1:
+                                
+                                                            st.info("Hier ist kein Vergleich notwendig, da diese Verbindung zu VRS-Tarifen angeboten wird.")
+                                                            break 
+                          
+                                                        else:
+                                
+                                                            anfrage_tage=time.strftime("%d.%m")
+                                                            anfrage_zeit=time.strftime("%H:%M")
+                                                            anfrage_komplett=time.strftime("%d.%m. %H:%M")
+                                                            wunschpreis1=wunschpreis2
+                                                            result=pandas.DataFrame(columns=["anfrage_tag","anfrage_uhrzeit","anfrage_komplett","startbahnhof", "zielbahnhof","fahrzeit","preis","wunschpreis"])
+                                                            result.loc[len(result)]=[anfrage_tage,anfrage_zeit, anfrage_komplett,station1,station2,zeiten_zv1,preis_float,preisangabe_float]
+                                                            result.to_sql(name=wunsch2, con=engine, if_exists="append" )
+                                                            result=result[0:0]
+                                                            
+                                                            port = 587  # For starttls
+                                                            smtp_server = "smtp.gmail.com"
+                                                            yag = yagmail.SMTP("dbpriceapp123@gmail.com","jxdovcbbxcdkmgxl")
+                                                            contents = [
+                                                                "Hallo :)"
+                                                                "\n" 
+                                                                "Good News!! Der Preis Deiner favoritisierten Verbindung ist auf Deinen Wunschpreis gefallen!"
+                                                                "\n"
+                                                                "Kaufe Dir also am besten direkt ein Ticket auf der Seite der DeutschenBahn."
+                                                                "Hier gehts zur Webseite: https://www.bahn.de "
+                                                                "\n"
+                                                                "\n"
+                                                                "Freundliche Grüße und eine gute Fahrt!"
+                                                                "\n"
+                                                                "Dein Team von"
+                                                                "DB-Price-App"]
+
+                                                            cur.execute(f"SELECT preis FROM {wunsch2} where preis <=wunschpreis",conn)
+                                                            if cur.fetchall():
+                                                                yag.send(to=loginnn,
+                                                                subject='Wunschpreis',
+                                                                contents=contents)
+                                                                break
            
-                                             sleep(18)
+                                                sleep(18)
                                          else:
                                            st.warning("Der Name dieser Anfrage existiert bereits. Bitte wähle einen Anderen.")
                                        mehrereanfragen(loginnn,wunsch2)

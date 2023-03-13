@@ -136,7 +136,7 @@ import smtplib, ssl
 
 
 
-cur = conn.cursor()
+
 st.subheader("Benachrichtigung anfordern")
 st.write("Möchtest Du eine Benachrichtigung bekommen, dass Deine Zugverbindungen auf Deinen Wunschpreis gefallen ist? Dann stell bitte erneut Deine Anfrage und gib Deinen Wunschpreis ein.")
 def app():

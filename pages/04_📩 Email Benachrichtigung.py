@@ -121,7 +121,6 @@ from matplotlib import dates as mpl_dates
 from cProfile import label
 from distutils.cmd import Command
 import datetime 
-from streamlit.cli import main  
 from streamlit.proto.RootContainer_pb2 import RootContainer
 import pandas as pd 
 import plotly.figure_factory as ff

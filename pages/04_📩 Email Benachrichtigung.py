@@ -57,7 +57,6 @@ from matplotlib import dates as mpl_dates
 from cProfile import label
 from distutils.cmd import Command
 import datetime 
-from streamlit.cli import main  
 from streamlit.proto.RootContainer_pb2 import RootContainer
 import pandas 
 import plotly.figure_factory as ff
@@ -91,7 +90,6 @@ from matplotlib import dates as mpl_dates
 from cProfile import label
 from distutils.cmd import Command
 import datetime 
-from streamlit.cli import main  
 from streamlit.proto.RootContainer_pb2 import RootContainer
 import pandas as pd 
 import plotly.figure_factory as ff
@@ -139,13 +137,7 @@ from typing import Collection
 import smtplib, ssl
 
 
-conn = psycopg2.connect(host ="dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com",
-                        database="dbticket", 
-                        user="dbticket_user", 
-                        password="Nhaema5GzFDyW3j0sGHVYjfhRBu0fTvy")
 
-engine = create_engine('postgresql://dbticket_user:Nhaema5GzFDyW3j0sGHVYjfhRBu0fTvy@dpg-cajo73sgqg428kba9ikg-a.frankfurt-postgres.render.com/dbticket')
-global cursor 
 cur = conn.cursor()
 st.subheader("Benachrichtigung anfordern")
 st.write("Möchtest Du eine Benachrichtigung bekommen, dass Deine Zugverbindungen auf Deinen Wunschpreis gefallen ist? Dann stell bitte erneut Deine Anfrage und gib Deinen Wunschpreis ein.")

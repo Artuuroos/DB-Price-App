@@ -21,8 +21,7 @@ import requests
 import time 
 from time import sleep
 from matplotlib import dates as mpl_dates
-from cProfile import label
-from streamlit.cli import main  
+from cProfile import label 
 from streamlit.proto.RootContainer_pb2 import RootContainer
 import pandas 
 import plotly.figure_factory as ff
